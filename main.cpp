@@ -145,7 +145,7 @@ int main (int argc, char** argv)
 	fprintf(stderr, "Waiting for first packet to arrive (see sourceforge.net bug 1019381)\n");
 	struct dpargs * userdata = (dpargs *) malloc (sizeof (struct dpargs));
 
-   struct timespec ts_refreshdelay;
+	struct timespec ts_refreshdelay;
 	ts_refreshdelay.tv_sec = refreshdelay;
 	ts_refreshdelay.tv_nsec = 0;
 

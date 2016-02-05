@@ -145,6 +145,10 @@ int main (int argc, char** argv)
 	fprintf(stderr, "Waiting for first packet to arrive (see sourceforge.net bug 1019381)\n");
 	struct dpargs * userdata = (dpargs *) malloc (sizeof (struct dpargs));
 
+	struct timespec ts_refreshdelay;
+	ts_refreshdelay.tv_sec = refreshdelay;
+	ts_refreshdelay.tv_nsec = 0;
+
 	// Main loop:
 	//
 	//  Walks though the 'handles' list, which contains handles opened in non-blocking mode.
@@ -175,6 +179,9 @@ int main (int argc, char** argv)
 			do_refresh();
 			needrefresh = false;
 		}
+		if (DEBUG || tracemode)
+		{
+		   nanosleep(&ts_refreshdelay,NULL);
+		}
 	}
 }
-

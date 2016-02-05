@@ -118,13 +118,12 @@ void addtoconninode (char * buffer)
 	}
 
 	char * hashkey = (char *) malloc (HASHKEYSIZE * sizeof(char));
-	char * local_string = (char*) malloc (50);
-	char * remote_string = (char*) malloc (50);
+	char local_string[50];
+	char remote_string[50];
 	inet_ntop(sa_family, &result_addr_local,  local_string,  49);
 	inet_ntop(sa_family, &result_addr_remote, remote_string, 49);
 
 	snprintf(hashkey, HASHKEYSIZE * sizeof(char), "%s:%d-%s:%d", local_string, local_port, remote_string, rem_port);
-	free (local_string);
 
 	//if (DEBUG)
 	//	fprintf (stderr, "Hashkey: %s\n", hashkey);
@@ -145,7 +144,6 @@ void addtoconninode (char * buffer)
 		current_local_addr = current_local_addr->next;
 	}
 	free (hashkey);
-	free (remote_string);
 }
 
 /* opens /proc/net/tcp[6] and adds its contents line by line */

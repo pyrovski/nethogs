@@ -175,6 +175,10 @@ int main (int argc, char** argv)
 			do_refresh();
 			needrefresh = false;
 		}
+		if (DEBUG || tracemode)
+		{
+			usleep(100);
+		}
 	}
 }
 
